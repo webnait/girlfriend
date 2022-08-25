@@ -15,7 +15,7 @@ app_secret = os.environ["APP_SECRET"]
 
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
-birthday2 = os.environ['BIRTHDAY2']
+birthday2 = os.environ['BIRTHDAY_B']
 o_w = "又是爱你的一天 宝贝"
 cz = "橙子"
 

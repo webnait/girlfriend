@@ -56,6 +56,6 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature= get_weather()
 low,high,date_t,wind,humidity= get_weather2()
-data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea},"temperature":{"value":temperature},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
+data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea},"temperature":{"value":temperature},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

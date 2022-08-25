@@ -46,6 +46,11 @@ def get_words():
   if words.status_code != 200:
     return get_words()
   return words.json()['data']['text']
+def tips():
+  tips = requests.get("http://api.tianapi.com/healthtip/index?key=9253f567ff2efb17d32ca831ed327983&")
+  if words.status_code != 200:
+    return tips()
+  return tips.json()["newslist"][0]['content']
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
@@ -56,6 +61,6 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature= get_weather()
 low,high,date_t,wind,humidity= get_weather2()
-data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea},"temperature":{"value":temperature},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
+data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea},"temperature":{"value":temperature},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"tips":{"value":tips(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

@@ -1,4 +1,5 @@
 from datetime import date, datetime
+import time
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -60,13 +61,91 @@ def tips():
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
-
+def birthday(uyear,umon,uday):
+    # 获取当前年月日(单个)
+    toyear = time.strftime('%Y', time.localtime(time.time()))  # "%Y"将被无世纪的年份锁代替
+    tomon = time.strftime('%m', time.localtime(time.time()))
+    today = time.strftime('%d', time.localtime(time.time()))
+    toyear = int(toyear)
+    tomon = int(tomon)
+    today = int(today)
+    # 将年月日连接起来，使其成为完整的时间(例：2022 - 03 -27)
+    todaynow = time.strftime("%Y-%m-%d", time.localtime())
+    todaynow_mon_day = time.strftime("%m-%d", time.localtime())
+    # 获取年
+    def insert_year():
+        # 润年2月29天，平年28天
+        flag = True
+        while flag:
+            input_year = uyear
+            input_year = int(input_year)
+            # 今年之前出生的
+            if input_year <= toyear:
+                return input_year
+                flag = False
+    # 获取月
+    def insert_mon():
+        flag = True
+        while flag:
+            input_mon = umon
+            input_mon = int(input_mon)
+            return input_mon
+            flag = False
+    # 获取日
+    def insert_day():
+        flag = True
+        while flag:
+            input_day = uday
+            input_day = int(input_day)
+            if input_day > today:
+                if input_day > 31 or input_day < 1:
+                    continue
+                elif input_day == today:
+                    flag = False
+                    return input_day
+                else:
+                    return input_day
+                    flag = False
+            else:
+                return input_day
+                flag = False
+    # 计算还有多少天生日(生日\今天\生日月\生日天)
+    def how_long(todaynow, mon, day):
+        # 明年的今天
+        next_year = int(toyear) + 1
+        str3 = str(next_year) + "-" + str(mon) + "-" + str(day)
+        str4 = str(int(toyear)) + "-" + str(mon) + "-" + str(day)
+        date2 = datetime.datetime.strptime(todaynow[0:10], "%Y-%m-%d")  # 今天
+        date3 = datetime.datetime.strptime(str3[0:10], "%Y-%m-%d")  # 明年生日=今年年份+1 +生日的月日
+        date4 = datetime.datetime.strptime(str4[0:10], "%Y-%m-%d")  # 今年的年+生日的月日
+        num = 0
+        # 明年
+        # 今天过生日:月日相等
+        if mon == tomon:
+            if day == today:
+                num = 0
+            if day > today:
+                num = (date4 - date2).days
+            if day < today:
+                num = (date3 - date2).days
+        # 已经过了的生日:明年生日-今天
+        elif mon < tomon:
+            num = (date3 - date2).days
+        # 还没过生日:今年的年+生日的月日 - 今天的年月日
+        else:
+            num = (date4 - date2).days  # 返回的全部是非0的整数
+        return num
+    year = insert_year()
+    mon = insert_mon()
+    day = insert_day()
+    num = how_long(todaynow, mon, day)
+    return num
 
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature= get_weather()
 low,high,date_t,wind,humidity= get_weather2()
-data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"birthday_left2":{"value":get_birthday2(),"color":get_random_color()},"tips":{"value":tips(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
+data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":birthday('2004','1','26'),"color":get_random_color()},"birthday_left2":{"value":birthday('2004','12','1'),"color":get_random_color()},"tips":{"value":tips(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

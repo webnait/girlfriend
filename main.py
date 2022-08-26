@@ -8,7 +8,7 @@ import requests
 import os
 import random
 
-today = datetime.now()
+# today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
@@ -37,17 +37,17 @@ def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
-def get_birthday():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
+# def get_birthday():
+#   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+#   if next < datetime.now():
+#     next = next.replace(year=next.year + 1)
+#   return (next - today).days
 
-def get_birthday2():
-  next2 = datetime.strptime(str(date.today().year) + "-" + birthday_B, "%Y-%m-%d")
-  if next2 < datetime.now():
-    next2 = next2.replace(year=next2.year + 1)
-  return (next2 - today).days
+# def get_birthday2():
+#   next2 = datetime.strptime(str(date.today().year) + "-" + birthday_B, "%Y-%m-%d")
+#   if next2 < datetime.now():
+#     next2 = next2.replace(year=next2.year + 1)
+#   return (next2 - today).days
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")

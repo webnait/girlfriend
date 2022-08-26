@@ -34,9 +34,20 @@ def get_weather2():
   weather = res['data']['list'][0]
   return math.floor(weather['low']),math.floor(weather['high']),str(weather['date']),str(weather['wind']),str(weather['humidity'])
 
+# def get_count():
+#   delta = nowtime - datetime.strptime(start_date, "%Y-%m-%d")
+#   return delta.days
 def get_count():
-  delta = nowtime - datetime.strptime(start_date, "%Y-%m-%d")
-  return delta.days
+  d1 = datetime.date.today()
+  y = int(f'{d1.year}')
+  m = int(f'{d1.month}')
+  d = int(f'{d1.day}')
+
+  date1=datetime.date(2022,8,6)#这里面year,month,day是代表年，月，日，年必须写成2021这种格式，都必须写成数字
+  date2=datetime.date(y,m,d)#同上，这个是第二个日期（后面的），上面的是第一个日期（前面的）
+  delta=date2-date1#这是两个日期相减，是一个时间差对象
+  diffdays=int(delta.total_seconds()//86400)#差的秒数除以86400即可
+  return diffdays+1
 
 # def get_birthday():
 #   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")

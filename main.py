@@ -33,9 +33,9 @@ def get_weather2():
   weather = res['data']['list'][0]
   return math.floor(weather['low']),math.floor(weather['high']),str(weather['date']),str(weather['wind']),str(weather['humidity'])
 
-def get_count():
-  delta = today - datetime.strptime(start_date, "%Y-%m-%d")
-  return delta.days
+# def get_count():
+#   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+#   return delta.days
 
 # def get_birthday():
 #   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")

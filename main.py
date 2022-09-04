@@ -19,8 +19,8 @@ app_secret = os.environ["APP_SECRET"]
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 birthday_B = "12-01"
-o_w = "曾经 关于你的一切我想要比谁都懂"
-o_w2 ='现在 我没有勇气放下身边关于你的anything'
+o_w = "关于你的一切我想要比谁都懂"
+o_w2 ='此刻我没有勇气放下身边关于你的anything'
 cz = "橙子"
 
 def get_weather():

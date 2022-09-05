@@ -22,10 +22,10 @@ birthday_B = "12-01"
 #o_w ='又是想你的一天'
 # o_w = "关于你的一切我想要比谁都懂"
 # o_w2 ='此刻我没有勇气放下身边关于你的anything'
-O_W = 'I found that I really did not love the wrong person'
-O_W2 = 'Just haven'+'t had time to like you well'
-O_W3 = 'Trying to say good night but feeling a little sad'
-O_W4 = 'Until missing you becomes a hobby'
+O_W = 'I found actually I didn’t like the wrong person.'
+O_W2 = 'Just didn’t have enough time to love you deeply.'
+O_W3 = 'Trying to say good night, I found myself trapped in sadness.'
+O_W4 = 'until missing you has also bred into a hobby.'
 cz = "橙子"
 
 def get_weather():

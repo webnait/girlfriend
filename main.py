@@ -25,7 +25,7 @@ birthday_B = "12-01"
 O_W = 'I found actually I didn’t like the wrong person.'
 O_W2 = 'Just didn’t have enough time to love you deeply.'
 O_W3 = 'Trying to say good night, I found myself trapped in sadness.'
-O_W4 = 'until missing you has also bred into a hobby.'
+O_W4 = 'until missing you has also bred into a hobby'
 cz = "橙子"
 
 def get_weather():

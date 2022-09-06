@@ -42,6 +42,20 @@ cz = "橙子"
 # 真的好想去改变，好想你...
 # 2022.9.6晚'''
 
+url_wb = 'http://api.tianapi.com/weibohot/?key=ea30182362d9b0fab6480f883319f68b'
+res_wb = requests.get(url_wb).json()['newslist']
+wb =[]
+for itemwb in res_wb:
+    hotword= itemwb['hotword']
+    wb.append(hotword)
+wb=wb[0:5]
+wb1 = wb[0]
+wb2 = wb[1]
+wb3 = wb[2]
+wb4 = wb[3]
+wb5 = wb[4]
+
+
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
@@ -179,7 +193,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature= get_weather()
 low,high,date_t,wind,humidity= get_weather2()
-data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":birthday('2004','1','26'),"color":get_random_color()},"birthday_left2":{"value":birthday('2004','12','1'),"color":get_random_color()},"tips":{"value":tips(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
+data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":birthday('2004','1','26'),"color":get_random_color()},"birthday_left2":{"value":birthday('2004','12','1'),"color":get_random_color()},"tips":{"value":tips(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"wb1":{"value":wb1, "color":get_random_color()},"wb2":{"value":wb2, "color":get_random_color()},"wb3":{"value":wb3, "color":get_random_color()},"wb4":{"value":wb4, "color":get_random_color()},"wb5":{"value":wb5, "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
 #data = {"open_words1":{"value":O_W,"color":get_random_color()},"open_words2":{"value":O_W2,"color":get_random_color()},"open_words3":{"value":O_W3,"color":get_random_color()},"open_words4":{"value":O_W4,"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

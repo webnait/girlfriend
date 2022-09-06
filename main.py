@@ -27,7 +27,7 @@ O_W2 = 'Just didn’t have enough time to love you deeply.'
 O_W3 = 'Trying to say good night, I found myself trapped in sadness.'
 O_W4 = 'until missing you has also bred into a hobby.'
 cz = "橙子"
-say_my ='想你'
+# say_my ='想你'
 # say_my = '''每到晚上，总会想起很多很多，总感觉来的是那么突然，却好像又在意料之中。但又不是所想象的那个结局，直到现在，内心还有点小小的期待...
 # 脑袋里总不停的闪过跟你的每分每秒，可惜还没等缓过来，进度条就已经被拉到了最后，像是追剧一样，总是对下一集怀着满满的憧憬...
 # 每次犯了错，总是少不了的一句理由就是“因为爱你...因为喜欢你...”一直把这些理由挂在嘴边，却忽略了你的感受，把“喜欢”当做了筹码，最后把这仅有的筹码给输的干净，你的好感也一点点减少...
@@ -180,6 +180,6 @@ wm = WeChatMessage(client)
 wea, temperature= get_weather()
 low,high,date_t,wind,humidity= get_weather2()
 #data = {"open_word":{"value":o_w,"color":get_random_color()},"today":{"value":date_t,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"low":{"value":low,"color":get_random_color()},"high":{"value":high,"color":get_random_color()},"wind":{"value":wind,"color":get_random_color()},"humidity":{"value":humidity,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":birthday('2004','1','26'),"color":get_random_color()},"birthday_left2":{"value":birthday('2004','12','1'),"color":get_random_color()},"tips":{"value":tips(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"chengzi":{"value":cz,"color":get_random_color()}}
-data = {"say_my":{"value":say_my,"color":get_random_color()},"open_words1":{"value":O_W,"color":get_random_color()},"open_words2":{"value":O_W2,"color":get_random_color()},"open_words3":{"value":O_W3,"color":get_random_color()},"open_words4":{"value":O_W4,"color":get_random_color()}}
+data = {"open_words1":{"value":O_W,"color":get_random_color()},"open_words2":{"value":O_W2,"color":get_random_color()},"open_words3":{"value":O_W3,"color":get_random_color()},"open_words4":{"value":O_W4,"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
